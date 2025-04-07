@@ -1,7 +1,7 @@
 import React from 'react'
 import Dropdown from '@/components/Dropdown/Page'
 import { IoIosArrowDown } from 'react-icons/io';
-const Women = () => {
+const Women = (products:any) => {
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -12,7 +12,7 @@ const Women = () => {
         <button className='flex items-center' onClick={handleClick}>Women
           <IoIosArrowDown />
         </button>
-        {open && <Dropdown  />}
+        {open && <Dropdown products1={products}/>}
     </div>
   )
 }

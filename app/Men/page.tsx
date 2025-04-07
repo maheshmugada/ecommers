@@ -2,7 +2,7 @@ import Dropdown from '@/components/Dropdown/Page'
 import React from 'react'
 import { IoIosArrowDown } from 'react-icons/io';
 
-const Men = () => {
+const Men = (users:any) => {
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(!open);
