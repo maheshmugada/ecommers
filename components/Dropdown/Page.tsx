@@ -1,31 +1,34 @@
 'use client'
-import React from 'react'
-const users = [
-  { id: 1, name1: 'Alice' },
-  { id: 2, name1: 'Bob' },
-  { id: 3, name1: 'Charlie' },
-];
+import React, { useState, useRef, useEffect } from 'react'
+import { IoIosArrowDown } from 'react-icons/io'
 
-const products = [
-  { id: 1, name: 'Laptop', price: '$1000' },
-  { id: 2, name: 'Phone', price: '$500' },
-  { id: 3, name: 'Tablet', price: '$300' },
-];
-const useList1 = users.length > products.length;
+const items = {
+  Men: ['Alice', 'Bob', 'Charlie'],
+  Women: ['Laptop', 'Phone', 'Tablet'],
+}
 
-const Page = (users:any) => {
+const Dropdown = ({ category }: { category: 'Men' | 'Women' }) => {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+ const handleClick = () =>{
+  setOpen(!open)
+ }
+  useEffect(() => {
+    const close = (e: MouseEvent) => !ref.current?.contains(e.target as Node) && setOpen(false)
+    document.addEventListener('mousedown', close)
+    return () => document.removeEventListener('mousedown', close)
+  }, [])
+
   return (
-    <div>
-     {useList1 ? (
-        <ul>
-          {users.map((item1:any, index:any) => (
-            <li key={index}>{item1.name1}</li>
-          ))}
-        </ul>
-      ) : (
-        <ul>
-          {products.map((item:any, index:any) => (
-            <li key={index}>{item.name}</li>
+    <div ref={ref}       >
+      <button onClick={handleClick} className="flex items-center">
+        {category} <IoIosArrowDown />
+      </button>
+      {open && (
+        <ul className="absolute mt-2 w-40 bg-white shadow z-50 rounded">
+          {items[category].map((name, i) => (
+            <li key={i} className="p-2 cursor-pointer">{name}</li>
           ))}
         </ul>
       )}
@@ -33,4 +36,4 @@ const Page = (users:any) => {
   )
 }
 
-export default Page
+export default Dropdown

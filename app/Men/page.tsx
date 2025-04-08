@@ -3,17 +3,12 @@ import React from 'react'
 import { IoIosArrowDown } from 'react-icons/io';
 
 const Men = (users:any) => {
-  const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(!open);
-  }
+
   return (
-    <div>
-      
-        <button className='flex items-center' onClick={handleClick}>Men
-        <IoIosArrowDown />
-        </button>
-        {open && <Dropdown  />}
+    <div >
+ 
+        <Dropdown  category='Men'/>
+
     </div>
   )
 }
