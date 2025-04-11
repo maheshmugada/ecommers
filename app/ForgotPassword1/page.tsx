@@ -6,6 +6,7 @@ import Frame from '../../public/Frame.png'
 import Link from 'next/link'
 import axios from 'axios'
 import { enqueueSnackbar, SnackbarProvider } from 'notistack'
+import InputPage from '@/components/Inputs/page'
 const ForgotPassword1 = () => {
     const [valid, setvalid] = useState(true)
     const [formData, setFormData] = useState({
@@ -65,62 +66,53 @@ const ForgotPassword1 = () => {
 
 
     return (
-     <SnackbarProvider maxSnack={3}>
-           <div className="bg-blue-950 h-screen">
-            <div className="p-8">
-                <div className="flex">
-                    <Image src={Frame} className="w-16 h-16" alt="Frame" />
-                    <div className="ml-4">
-                    <h1 className="text-4xl font-bold text-white">Ecommers</h1>
-                    <p className="text-sm text-slate-400">Powered by CRVM</p>
+        <SnackbarProvider maxSnack={3}>
+            <div className="bg-blue-950 h-screen">
+                <div className="p-8">
+                    <div className="flex">
+                        <Image src={Frame} className="w-16 h-16" alt="Frame" />
+                        <div className="ml-4">
+                            <h1 className="text-4xl font-bold text-white">Ecommers</h1>
+                            <p className="text-sm text-slate-400">Powered by CRVM</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex justify-center items-center pt-8">
+                    <div className="bg-white w-96 rounded-xl px-8 py-8">
+                        <form onSubmit={handleSubmit}>
+                            <h1 className="text-center font-bold text-xl  pb-8"> Reset Password</h1>
+
+                            <div className="">
+                               
+                                <div className="">
+                                    <InputPage
+                                        formData={formData}
+                                        setFormData={setFormData}
+                                        errors={errors}
+                                        showEmail={true}
+                                    />
+
+                          
+                                </div>
+                            </div>
+                          
+                            <Link href="/ResetPassword">
+                                <button
+                                    className="bg-blue-950 w-80 py-2 rounded-3xl mt-8 font-semibold text-white"
+
+                                >
+
+                                    Submit
+
+                                </button>
+                            </Link>
+                            {/* <button onClick={() => enqueueSnackbar('That was easy!')}>Show snackbar</button> */}
+
+                        </form>
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center items-center pt-8">
-                <div className="bg-white w-96 rounded-xl px-8 py-8">
-                    <form onSubmit={handleSubmit}>
-                        <h1 className="text-center font-bold text-xl  pb-8">Enter Email ID To Reset Password</h1>
-
-                        <div className="">
-                            <label className="font-semibold pb">Email</label>
-                            <div className="">
-                                <input
-                                    className="py-2 bg-gray-50 w-80 rounded-3xl placeholder:px-4 px-4 border-none outline-none"
-                                    type="text"
-                                    name="email"
-                                    placeholder="Type here"
-
-                                    onChange={(event) =>
-                                        setFormData({ ...formData, email: event.target.value })
-                                    }
-                                />
-                            </div>
-                        </div>
-                        {valid ? (
-                            <></>
-                        ) : (
-                            <span className='text-red-500 text-sm'>
-                                {errors.email}
-                            </span>
-                        )}
-                        <Link href="/ResetPassword">
-                            <button
-                                className="bg-blue-950 w-80 py-2 rounded-3xl mt-8 font-semibold text-white"
-
-                            >
-
-                                Submit
-
-                            </button>
-                        </Link>
-                        {/* <p className="text-center pt-4 text-blue-400 font-semibold "></p> */}
-                        <button onClick={() => enqueueSnackbar('That was easy!')}>Show snackbar</button>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-     </SnackbarProvider>
+        </SnackbarProvider>
     )
 }
 

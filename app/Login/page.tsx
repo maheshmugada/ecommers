@@ -4,9 +4,10 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useState } from 'react';
 import Frame from '../../public/Frame.png';
-import visibility from '../../public/visibility.png';
+
 import Link from 'next/link';
 import { enqueueSnackbar, SnackbarProvider } from 'notistack';
+import InputPage from '@/components/Inputs/page';
 
 const Login = () => {
   const router = useRouter(); // ✅ using App Router navigation
@@ -73,9 +74,9 @@ const Login = () => {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <div className="bg-blue-950 h-screen">
-        <div className="p-8">
-          <div className="flex">
+      <div className="bg-blue-950 h-screen px-4">
+        <div className="w-full max-w-md bg-white rounded-xl px-6 py-8 shadow-lg">
+          <div className="flex items-center mb-6ex">
             <Image src={Frame} className="w-16 h-16" alt="Frame" />
             <div className="ml-4">
               <h1 className="text-4xl font-bold text-white">Ecommers</h1>
@@ -86,40 +87,23 @@ const Login = () => {
         <div className="flex justify-center items-center pt-8">
           <div className="bg-white w-96 rounded-xl px-8 py-8">
             <form onSubmit={handleSubmit}>
-              <h1 className="text-center font-bold text-3xl pb-4">Log in</h1>
+              <h1 className="text-center text-xl md:text-2xl font-bold mb-4">Log in</h1>
 
-              <label className="font-semibold">Email</label>
-              <input
-                className="py-2 bg-gray-50 w-80 rounded-3xl px-4 border-none outline-none"
-                type="text"
-                placeholder="Type here"
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              <InputPage
+                formData={formData}
+                setFormData={setFormData}
+                errors={errors}
+                showEmail={true}
+                showPasswordInput={true}
+                showPassword={showPassword}
+                handleTogglePasswordVisibility={handleTogglePasswordVisibility}
               />
-              {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
-
-              <div className="mt-4">
-                <label className="font-semibold">Enter password</label>
-                <div className="relative">
-                  <input
-                    className="py-2 bg-gray-50 w-80 rounded-3xl px-4 border-none outline-none"
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Type here"
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  />
-                  <div
-                    className="absolute top-2 right-2 cursor-pointer"
-                    onClick={handleTogglePasswordVisibility}
-                  >
-                    <Image src={visibility} alt="Toggle visibility" />
-                  </div>
-                </div>
-                {errors.password && (
-                  <span className="text-red-500 text-sm">{errors.password}</span>
-                )}
-                <p className="text-end text-blue-400 font-semibold">
-                  <Link href="/ForgotPassword1">Forgot Password?</Link>
-                </p>
-              </div>
+              
+             
+              <p className="text-end text-blue-400 font-semibold">
+                <Link href="/ForgotPassword1">Forgot Password?</Link>
+              </p>
+              {/* </div> */}
 
               <button className="bg-blue-950 w-80 py-2 rounded-3xl mt-8 font-semibold text-white">
                 Log in
