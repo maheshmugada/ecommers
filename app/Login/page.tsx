@@ -74,16 +74,16 @@ const Login = () => {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <div className="bg-blue-950 h-screen px-4">
-        <div className="w-full max-w-md bg-white rounded-xl px-6 py-8 shadow-lg">
-          <div className="flex items-center mb-6ex">
-            <Image src={Frame} className="w-16 h-16" alt="Frame" />
-            <div className="ml-4">
-              <h1 className="text-4xl font-bold text-white">Ecommers</h1>
-              <p className="text-sm text-slate-400">Powered by CRVM</p>
-            </div>
-          </div>
-        </div>
+      <div className="bg-blue-950 h-screen   px-4">
+        <div className="p-8">
+                           <div className="flex">
+                               <Image src={Frame} className="w-16 h-16" alt="Frame" />
+                               <div className="ml-4">
+                                   <h1 className="text-4xl font-bold text-white">Ecommers</h1>
+                                   <p className="text-sm text-slate-400">Powered by CRVM</p>
+                               </div>
+                           </div>
+                       </div>
         <div className="flex justify-center items-center pt-8">
           <div className="bg-white w-96 rounded-xl px-8 py-8">
             <form onSubmit={handleSubmit}>
